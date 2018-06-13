@@ -1,46 +1,57 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package listNoeud;
 
-import static javafx.scene.input.KeyCode.T;
 
 /**
  *
- * @author mpgsa
+ * @author Marcos Gomes
  * @param <T>
  */
 public class LinkedChaine<T> {
     // Fields
     protected Noeud<T> start;
     protected Noeud<T> end;
+    private int size;
     // No-parametric constructor 
     public LinkedChaine() {
         this.start = null;
+        this.end = null;
+        this.size = 0;
     }
     // Parametric constructor 
     public LinkedChaine(T data) {
-        start = new Noeud<>();
-        start.setData(data);
+        this.start = new Noeud<>();
+        this.start.setData(data);
+        this.end = this.start;
+        this.size = 1;
     }
-    // Parametric constructor
+    
+    /**
+     * Parametric constructor that it will receive T [] arrayT to convert it<br>
+     * into a LinkedChaine with size equal to array length.
+     * @param arrayT 
+     */
     public LinkedChaine(T [] arrayT) {
         // Instances
-        start = new Noeud<>();
-        end = new Noeud<>();
-        // Locals
-        Noeud<T> temp = new Noeud<>();
+        this.start = new Noeud<>();
+        this.end = new Noeud<>();
+        this.size = 0;
         // Loop to fill and construct the List
         for (int i = 0; i < arrayT.length; i++) {
-            // condition to sign the temp and start
-            if (start.getData() != null) {
-                temp = start;
+            Noeud<T> temp = new Noeud<>();
+            // Head value
+            if (start.getData() == null) {
+                start.setData(arrayT[i]);
+            } else {
+                temp = end;
+                // Set the next data to the end
                 end.setData(arrayT[i]);
+                // Link the end to the cycle first value 
                 end.setBefore(temp.getAfter());
             }
-            start.setData(arrayT[i]);
+            // Temp value to next cycle
+            end.setData(arrayT[i]);
+            this.size++;
         }
         
     }
@@ -49,25 +60,14 @@ public class LinkedChaine<T> {
     
     public Object[] toArray(){
         // locals
-        int size = 1;
         Object[] toReturn = new Object[size];
         
         return toReturn;
     }
     
+    public T head(){return start.getData();}
     
-    
-    public T head(){
-        T toReturn = null;
-        
-        return toReturn;
-    }
-    
-    public T end(){
-        T toReturn = null;
-        
-        return toReturn;
-    }
+    public T end(){return end.getData();}
     
     public LinkedChaine<T> tail(){
         LinkedChaine<T> lc = new LinkedChaine<>();
@@ -79,11 +79,6 @@ public class LinkedChaine<T> {
         
     }
     
-    public int size (){
-        int toReturn = 0;
-        
-        return toReturn;
-    }
-    
-    
+    public int listSize(){return this.size;}
+
 }
