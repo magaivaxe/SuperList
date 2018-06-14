@@ -7,7 +7,7 @@ package listNoeud;
  * @author Marcos Gomes
  * @param <T>
  */
-public class LinkedChaine<T> {
+public class LinkedChaine<T> implements LCImplements<T>{
     // Fields
     protected Noeud<T> start;
     protected Noeud<T> end;
@@ -53,32 +53,64 @@ public class LinkedChaine<T> {
             end.setData(arrayT[i]);
             this.size++;
         }
-        
-    }
-    
-    
-    
-    public Object[] toArray(){
-        // locals
-        Object[] toReturn = new Object[size];
-        
-        return toReturn;
-    }
-    
-    public T head(){return start.getData();}
-    
-    public T end(){return end.getData();}
-    
-    public LinkedChaine<T> tail(){
-        LinkedChaine<T> lc = new LinkedChaine<>();
-        
-        return lc;
-    }
-    
-    public void append (T e){
-        
     }
     
     public int listSize(){return this.size;}
+    
+    @Override
+    @SuppressWarnings("SuspiciousSystemArraycopy")
+    public Object[] toArray(){
+        Object[] toReturn = new Object[size];
+        System.arraycopy(this, 0, toReturn, 0, this.size);
+        return toReturn;
+    }
+    
+    @Override
+    public T head(){return start.getData();}
+    
+    @Override
+    public T end(){return end.getData();}
+    
+    @Override
+    public LinkedChaine<T> tail() throws LCinvalidAccessException{
+        if (this.start != null) { 
+            LinkedChaine<T> lc = new LinkedChaine<>();
+            lc = this;
+            lc.start.setData(null);
+            lc.size--;
+            return lc;
+        } else {
+            throw new LCinvalidAccessException(3, 0);
+        }
+    }
+    
+    @Override
+    @SuppressWarnings("SuspiciousSystemArraycopy")
+    public void append (T data) throws LCinvalidAccessException{
+        if (data != null){
+            LinkedChaine<T> lc = new LinkedChaine<>(data);
+            System.arraycopy(lc, 0, this, size, lc.size);
+        }else{
+            throw new LCinvalidAccessException(size, null);
+        }
+        
+    }
+    
+    @Override
+    @SuppressWarnings("SuspiciousSystemArraycopy")
+    public void concat(LinkedChaine<T> lc) throws LCinvalidAccessException{
+        if (lc.start != null) {
+            System.arraycopy(lc, 0, this, size, lc.size);
+        }else{
+            throw new LCinvalidAccessException(4, null);
+        }
+        
+    }
+
+    @Override
+    public LinkedChaineIterator<T> linkedChaineIterator() {
+        LinkedChaineIterator<T> lci = new LinkedChaineIterator<>(this);
+        return lci;
+    }
 
 }
