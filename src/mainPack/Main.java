@@ -6,7 +6,7 @@
 package mainPack;
 
 
-import listNoeud.LinkedChaine;
+import listNoeud.LinkedList;
 import listNoeud.Node;
 
 /**
@@ -21,22 +21,27 @@ public class Main {
     public static void main(String[] args) {
         
         Integer [] testInt = new Integer[]{0,1,2,3,4,5,6,7,8,9};
-        LinkedChaine<Integer> testList = new LinkedChaine<>(testInt);
+        LinkedList<Integer> testList = new LinkedList<>(testInt);
         
-        // Test array contructor
+        // Test array contructor    OK
+        System.out.println("test List");
         testPrint(testList);
-        // Test listEnd() method
+        // Test listEnd() method    OK
         System.out.println("End: " + testList.listEnd());
-        // Test listSize()
+        // Test listSize()          OK
         System.out.println("Size: " + testList.listSize());
-        // Test listHead()
+        // Test listHead()          OK
         System.out.println("Head: " + testList.listHead());
-        // Test listTail()
-        LinkedChaine<Integer> testTail = testList.listTail();
-        testPrint(testTail);
+        
+        // Test listTail()          OK
+        System.out.println("Test tail");
+        LinkedList<Integer> testTail = testList.listTail();
+        System.out.println(testTail.getHead().getNext().getData());
+        Node<Integer> temp = testTail.getHead();
+        
     }
 
-    private static void testPrint(LinkedChaine<Integer> lc) {
+    private static void testPrint(LinkedList<Integer> lc) {
         Node<Integer> temp = lc.getHead();
         while (temp.getNext() != null) {            
             System.out.println(temp.getData());

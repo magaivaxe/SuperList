@@ -16,40 +16,40 @@ public interface LCImplements<T> {
     public int listSize();
     
     /**
-     * Converts LinkedChaine to an array T[].
+     * Converts LinkedList to an array T[].
      * @return 
      */
     public Object[] toArray();
     
     /**
-     * Return the LinkedChaine first element.
-     * @return LinkedChaine.start.data;
+     * Return the LinkedList first element.
+     * @return LinkedList.start.data;
      */
     public T listHead();
     
     /**
      * Returns the current object with start {@code Noeud<T>} = null.
-     * @return LinkedChaine{@code <T>}
+     * @return LinkedList{@code <T>}
      */
-    public LinkedChaine<T> listTail();
+    public LinkedList<T> listTail();
     
     /**
-     * Return the LinkedChaine last element.
-     * @return LinkedChaine.listEnd.data;
+     * Return the LinkedList last element.
+     * @return LinkedList.listEnd.data;
      */
     public T listEnd();
     
     /**
-     * Add data element after the last LinkedChaine element 
+     * Add data element after the last LinkedList element 
      * @param data to add
      */
     public void append (T data);
     
     /**
-     * Add a LinkedChaine {@code lc} to listEnd of this.
-     * @param lc LinkedChaine object
+     * Add a LinkedList {@code lc} to listEnd of this.
+     * @param lc LinkedList object
      */
-    public void concat (LinkedChaine<T> lc);
+    public void concat (LinkedList<T> lc);
     
     /**
      * Iterator initializer.

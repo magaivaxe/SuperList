@@ -15,10 +15,10 @@ public class LinkedChaineIterator<T> implements Iterable<T>{
     // Fields
     private Node<T> next;
     private Node<T> current;
-    private LinkedChaine<T> linkedChaine;
+    private LinkedList<T> linkedChaine;
     // Constructors
 
-    public LinkedChaineIterator(LinkedChaine<T> linkedChaine) {
+    public LinkedChaineIterator(LinkedList<T> linkedChaine) {
         this.linkedChaine = linkedChaine;
     }
     

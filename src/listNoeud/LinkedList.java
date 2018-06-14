@@ -7,19 +7,19 @@ package listNoeud;
  * @author Marcos Gomes
  * @param <T>
  */
-public class LinkedChaine<T> implements LCImplements<T>{
+public class LinkedList<T> implements LCImplements<T>{
     // Fields
     private Node<T> head;
     private Node<T> end;
     private int size;
     // No-parametric constructor 
-    public LinkedChaine() {
+    public LinkedList() {
         this.head = null;
         this.end = null;
         this.size = 0;
     }
     // Parametric constructor 
-    public LinkedChaine(T data) {
+    public LinkedList(T data) {
         this.head = new Node<>(data, null);
         this.size = 1;
     }
@@ -29,7 +29,7 @@ public class LinkedChaine<T> implements LCImplements<T>{
      * into a LinkedChaine with size equal to array length.
      * @param arrayT 
      */
-    public LinkedChaine(T [] arrayT) {
+    public LinkedList(T [] arrayT) {
         // Instances
         this.size = 0;
         // Head value
@@ -66,19 +66,23 @@ public class LinkedChaine<T> implements LCImplements<T>{
     }
     
     @Override
-    public LinkedChaine<T> listTail() {
+    public LinkedList<T> listTail() {
         // initial node on head.next
-        Node<T> temp = head.next;
-        LinkedChaine<T> lc = new LinkedChaine<>(temp.data);
+        Node<T> tempThis = head;
+        LinkedList<T> lc = new LinkedList<>(head.next.data);
+        lc.size = this.size - 1;
         // loop to fill
-        while (temp.next != null) {          
-            lc.head.next = temp.next;
-            temp = temp.next;
+        while (tempThis.next != null) {
+            
+            lc.head.next = new Node<>(tempThis.next.data, tempThis.next);
+            //Incrementation
+            tempThis = tempThis.next;
             lc.head = lc.head.next;
-        }
-        // condition to fill the last
-        if (temp.next == null) {
-            lc.head.next = temp;
+            // Exit condition
+            if (tempThis.next == null) {
+                lc.end = tempThis;
+                break;
+            }
         }
         return lc;
     }
@@ -98,7 +102,7 @@ public class LinkedChaine<T> implements LCImplements<T>{
     }
     
     @Override
-    public void concat(LinkedChaine<T> lc) throws LCinvalidAccessException{
+    public void concat(LinkedList<T> lc) throws LCinvalidAccessException{
         if (lc.head != null) {
             
         }else{
