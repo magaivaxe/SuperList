@@ -10,6 +10,12 @@ package listNoeud;
 public interface LCImplements<T> {
     
     /**
+     * Return the size list
+     * @return integer size list
+     */
+    public int listSize();
+    
+    /**
      * Converts LinkedChaine to an array T[].
      * @return 
      */
@@ -19,19 +25,19 @@ public interface LCImplements<T> {
      * Return the LinkedChaine first element.
      * @return LinkedChaine.start.data;
      */
-    public T head();
+    public T listHead();
     
     /**
      * Returns the current object with start {@code Noeud<T>} = null.
      * @return LinkedChaine{@code <T>}
      */
-    public LinkedChaine<T> tail();
+    public LinkedChaine<T> listTail();
     
     /**
      * Return the LinkedChaine last element.
-     * @return LinkedChaine.end.data;
+     * @return LinkedChaine.listEnd.data;
      */
-    public T end();
+    public T listEnd();
     
     /**
      * Add data element after the last LinkedChaine element 
@@ -40,7 +46,7 @@ public interface LCImplements<T> {
     public void append (T data);
     
     /**
-     * Add a LinkedChaine {@code lc} to end of this.
+     * Add a LinkedChaine {@code lc} to listEnd of this.
      * @param lc LinkedChaine object
      */
     public void concat (LinkedChaine<T> lc);

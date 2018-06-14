@@ -13,8 +13,8 @@ import java.util.Iterator;
  */
 public class LinkedChaineIterator<T> implements Iterable<T>{
     // Fields
-    private Noeud<T> next;
-    private Noeud<T> current;
+    private Node<T> next;
+    private Node<T> current;
     private LinkedChaine<T> linkedChaine;
     // Constructors
 
@@ -36,7 +36,7 @@ public class LinkedChaineIterator<T> implements Iterable<T>{
     }
     
     /**
-     * Set data as value to current {@code Noeud} data
+     * Set data as value to current {@code Node} data
      * @param data T value to enter
      */
     public void set(T data){
@@ -44,7 +44,7 @@ public class LinkedChaineIterator<T> implements Iterable<T>{
     }
     
     /**
-     * Add a {@code Noeud} with data value after current position
+     * Add a {@code Node} with data value after current position
      * @param data T value to enter
      */
     public void add (T data){
@@ -52,7 +52,7 @@ public class LinkedChaineIterator<T> implements Iterable<T>{
     }
     
     /**
-     * Remove the current {@code Noeud}
+     * Remove the current {@code Node}
      */
     public void remove(){
         

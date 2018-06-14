@@ -9,20 +9,18 @@ package listNoeud;
  */
 public class LinkedChaine<T> implements LCImplements<T>{
     // Fields
-    protected Noeud<T> start;
-    protected Noeud<T> end;
+    private Node<T> head;
+    private Node<T> end;
     private int size;
     // No-parametric constructor 
     public LinkedChaine() {
-        this.start = null;
+        this.head = null;
         this.end = null;
         this.size = 0;
     }
     // Parametric constructor 
     public LinkedChaine(T data) {
-        this.start = new Noeud<>();
-        this.start.setData(data);
-        this.end = this.start;
+        this.head = new Node<>(data, null);
         this.size = 1;
     }
     
@@ -33,82 +31,81 @@ public class LinkedChaine<T> implements LCImplements<T>{
      */
     public LinkedChaine(T [] arrayT) {
         // Instances
-        this.start = new Noeud<>();
-        this.end = new Noeud<>();
         this.size = 0;
+        // Head value
+        head = new Node<>(arrayT[0], null);
+        this.size++;
+        Node<T> temp = head;
         // Loop to fill and construct the List
-        for (int i = 0; i < arrayT.length; i++) {
-            Noeud<T> temp = new Noeud<>();
-            // Head value
-            if (start.getData() == null) {
-                start.setData(arrayT[i]);
-            } else if(i == 2) {
-                start.setAfter(end);
-                end.setBefore(start);
-            } else {
-                // Temp receives the current value from end
-                temp = end;
-                // End receives the new value
-                end.setData(arrayT[i]);
-                // link temp and end
-                temp.setAfter(end);
-                end.setBefore(temp);
+        for (int i = 1; i < arrayT.length; i++) {
+            if (temp.next == null) {
+                temp.next = new Node<>(arrayT[i], null);
             }
+            temp = temp.next;
             this.size++;
+            // The last assign
+            if (i == arrayT.length - 1) {
+                end = temp;
+            }
         }
     }
     
+    @Override
     public int listSize(){return this.size;}
     
     @Override
-    @SuppressWarnings("SuspiciousSystemArraycopy")
+    public T listHead(){return head.data;}
+    
+    @Override
+    public T listEnd(){return end.data;}
+    
+    @Override
     public Object[] toArray(){
-        Object[] toReturn = new Object[size];
-        System.arraycopy(this, 0, toReturn, 0, this.size);
-        return toReturn;
+        
+        return null;
     }
     
     @Override
-    public T head(){return start.getData();}
-    
-    @Override
-    public T end(){return end.getData();}
-    
-    @Override
-    public LinkedChaine<T> tail() throws LCinvalidAccessException{
-        if (this.start != null) { 
-            LinkedChaine<T> lc = new LinkedChaine<>();
-            lc = this;
-            lc.start.setData(null);
-            lc.size--;
-            return lc;
-        } else {
-            throw new LCinvalidAccessException(3, 0);
+    public LinkedChaine<T> listTail() {
+        // initial node on head.next
+        Node<T> temp = head.next;
+        LinkedChaine<T> lc = new LinkedChaine<>(temp.data);
+        // loop to fill
+        while (temp.next != null) {          
+            lc.head.next = temp.next;
+            temp = temp.next;
+            lc.head = lc.head.next;
         }
+        // condition to fill the last
+        if (temp.next == null) {
+            lc.head.next = temp;
+        }
+        return lc;
     }
     
     @Override
-    @SuppressWarnings("SuspiciousSystemArraycopy")
     public void append (T data) throws LCinvalidAccessException{
-        if (data != null){
-            LinkedChaine<T> lc = new LinkedChaine<>(data);
-            System.arraycopy(lc, 0, this, size, lc.size);
+        if (head == null){
+            head = new Node<T>(data, head);
         }else{
-            throw new LCinvalidAccessException(size, null);
+            Node<T> temp = head;
+            while (temp.next != null) {                
+                temp = temp.next;
+            }
+            temp.next = new Node<T>(data, null);
         }
         
     }
     
     @Override
-    @SuppressWarnings("SuspiciousSystemArraycopy")
     public void concat(LinkedChaine<T> lc) throws LCinvalidAccessException{
-        if (lc.start != null) {
-            System.arraycopy(lc, 0, this, size, lc.size);
+        if (lc.head != null) {
+            
         }else{
             throw new LCinvalidAccessException(4, null);
         }
-        
     }
+    
 
     @Override
     public LinkedChaineIterator<T> linkedChaineIterator() {
@@ -116,4 +113,12 @@ public class LinkedChaine<T> implements LCImplements<T>{
         return lci;
     }
 
+    public Node<T> getHead() {
+        return head;
+    }
+
 }
+    // =========================================================================
+    
+    
+

@@ -5,7 +5,9 @@
  */
 package mainPack;
 
+
 import listNoeud.LinkedChaine;
+import listNoeud.Node;
 
 /**
  *
@@ -21,15 +23,28 @@ public class Main {
         Integer [] testInt = new Integer[]{0,1,2,3,4,5,6,7,8,9};
         LinkedChaine<Integer> testList = new LinkedChaine<>(testInt);
         
+        // Test array contructor
         testPrint(testList);
+        // Test listEnd() method
+        System.out.println("End: " + testList.listEnd());
+        // Test listSize()
+        System.out.println("Size: " + testList.listSize());
+        // Test listHead()
+        System.out.println("Head: " + testList.listHead());
+        // Test listTail()
+        LinkedChaine<Integer> testTail = testList.listTail();
+        testPrint(testTail);
     }
 
     private static void testPrint(LinkedChaine<Integer> lc) {
-        Integer[] test = (Integer[]) lc.toArray();
-        for (int i = 0; i < lc.listSize(); i++) {
-            System.out.println(test[i]);
+        Node<Integer> temp = lc.getHead();
+        while (temp.getNext() != null) {            
+            System.out.println(temp.getData());
+            temp = temp.getNext();
         }
-        
+        if (temp.getNext() == null) {
+            System.out.println(temp.getData());
+        }
     }
     
 }
