@@ -25,7 +25,11 @@ public class Main {
     }
 
     private static void testPrint(LinkedChaine<Integer> lc) {
-        System.out.println(lc.head() + " " + lc.end());
+        Integer[] test = (Integer[]) lc.toArray();
+        for (int i = 0; i < lc.listSize(); i++) {
+            System.out.println(test[i]);
+        }
+        
     }
     
 }

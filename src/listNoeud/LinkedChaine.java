@@ -42,15 +42,18 @@ public class LinkedChaine<T> implements LCImplements<T>{
             // Head value
             if (start.getData() == null) {
                 start.setData(arrayT[i]);
+            } else if(i == 2) {
+                start.setAfter(end);
+                end.setBefore(start);
             } else {
+                // Temp receives the current value from end
                 temp = end;
-                // Set the next data to the end
+                // End receives the new value
                 end.setData(arrayT[i]);
-                // Link the end to the cycle first value 
-                end.setBefore(temp.getAfter());
+                // link temp and end
+                temp.setAfter(end);
+                end.setBefore(temp);
             }
-            // Temp value to next cycle
-            end.setData(arrayT[i]);
             this.size++;
         }
     }
