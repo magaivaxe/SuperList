@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package listNoeud;
+package listNode;
 
 /**
 * Internal class to be access uniquely by LinkChaine

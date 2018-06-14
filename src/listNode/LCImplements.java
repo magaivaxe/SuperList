@@ -1,5 +1,5 @@
 
-package listNoeud;
+package listNode;
 
 
 /**
@@ -29,6 +29,7 @@ public interface LCImplements<T> {
     
     /**
      * Returns the current object with start {@code Noeud<T>} = null.
+     * @param list to enter
      * @return LinkedList{@code <T>}
      */
     public LinkedList<T> listTail();
@@ -53,7 +54,7 @@ public interface LCImplements<T> {
     
     /**
      * Iterator initializer.
-     * @return a new LinkedChaineIterator{@code <T>}.
+     * @return a new LinkedListIterator{@code <T>}.
      */
-    public LinkedChaineIterator<T> linkedChaineIterator();
+    public LinkedListIterator<T> linkedChaineIterator();
 }

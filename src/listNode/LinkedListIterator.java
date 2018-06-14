@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package listNoeud;
+package listNode;
 
 import java.util.Iterator;
 
@@ -11,14 +11,14 @@ import java.util.Iterator;
  *
  * @author Marcos Gomes
  */
-public class LinkedChaineIterator<T> implements Iterable<T>{
+public class LinkedListIterator<T> implements Iterable<T>{
     // Fields
     private Node<T> next;
     private Node<T> current;
     private LinkedList<T> linkedChaine;
     // Constructors
 
-    public LinkedChaineIterator(LinkedList<T> linkedChaine) {
+    public LinkedListIterator(LinkedList<T> linkedChaine) {
         this.linkedChaine = linkedChaine;
     }
     

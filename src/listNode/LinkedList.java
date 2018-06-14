@@ -1,5 +1,5 @@
 
-package listNoeud;
+package listNode;
 
 
 /**
@@ -68,52 +68,65 @@ public class LinkedList<T> implements LCImplements<T>{
     @Override
     public LinkedList<T> listTail() {
         // initial node on head.next
-        Node<T> tempThis = head;
-        LinkedList<T> lc = new LinkedList<>(head.next.data);
+        Node<T> temp = this.head.next;
+        LinkedList<T> lc = new LinkedList<>(temp.data);
         lc.size = this.size - 1;
-        // loop to fill
-        while (tempThis.next != null) {
-            
-            lc.head.next = new Node<>(tempThis.next.data, tempThis.next);
-            //Incrementation
-            tempThis = tempThis.next;
-            lc.head = lc.head.next;
-            // Exit condition
-            if (tempThis.next == null) {
-                lc.end = tempThis;
-                break;
+        // to read linkedList
+        while (temp != null) {            
+            // Condition to set end
+            if (temp.next == null) {
+                lc.end = temp;
             }
+            // Loop incrementation
+            temp = temp.next;
         }
         return lc;
     }
     
     @Override
-    public void append (T data) throws LCinvalidAccessException{
-        if (head == null){
-            head = new Node<T>(data, head);
+    public void append (T data){
+        // If it is void
+        if (this.head == null){
+            this.head = new Node<>(data, null);
+            this.size++;
         }else{
-            Node<T> temp = head;
-            while (temp.next != null) {                
+            // Temp to read and incrementation
+            Node<T> temp = this.head;
+            // Loop to read Node by Node
+            while (temp.next != null) {
+                // Incrementation
                 temp = temp.next;
             }
             temp.next = new Node<T>(data, null);
+            this.size++;
+            this.end = temp.next;
         }
-        
     }
     
     @Override
     public void concat(LinkedList<T> lc) throws LCinvalidAccessException{
-        if (lc.head != null) {
-            
-        }else{
+        if (lc.head == null) {
             throw new LCinvalidAccessException(4, null);
+        }else{
+            // Temp to read and incrementaion
+            Node<T> temp = this.head;
+            // Loop to read
+            while (temp.next != null) {                
+                temp = temp.next;
+            }
+            Node<T> tempLC = lc.head;
+            // Contatenation
+            temp.next = lc.head;
+            // New size
+            this.size += lc.size;
+            this.end = lc.end;
         }
     }
     
 
     @Override
-    public LinkedChaineIterator<T> linkedChaineIterator() {
-        LinkedChaineIterator<T> lci = new LinkedChaineIterator<>(this);
+    public LinkedListIterator<T> linkedChaineIterator() {
+        LinkedListIterator<T> lci = new LinkedListIterator<>(this);
         return lci;
     }
 
