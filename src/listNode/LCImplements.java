@@ -29,7 +29,6 @@ public interface LCImplements<T> {
     
     /**
      * Returns the current object with start {@code Noeud<T>} = null.
-     * @param list to enter
      * @return LinkedList{@code <T>}
      */
     public LinkedList<T> listTail();

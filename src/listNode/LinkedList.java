@@ -126,8 +126,8 @@ public class LinkedList<T> implements LCImplements<T>{
 
     @Override
     public LinkedListIterator<T> linkedChaineIterator() {
-        LinkedListIterator<T> lci = new LinkedListIterator<>(this);
-        return lci;
+        
+        return new LinkedListIterator<>(this);
     }
 
     public Node<T> getHead() {
