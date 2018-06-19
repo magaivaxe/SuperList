@@ -39,11 +39,11 @@ public class LCinvalidAccessException extends RuntimeException {
                 break;
             case 6: msg = "Invalid previous() call: hasPrevious() false";
                 break;
-            case 7: msg = "Invalid set(T v) call: undefined current position";
+            case 7: msg = "Invalid set(T v) cannot delete";
                 break;
             case 8: msg = "Invalid remove() call: undefined current position";
                 break;
-            case 9: msg = "Invalid append() call: undefined data";
+            case 9: msg = "Invalid append() cannot append";
                 break;
             default: msg = "Unknown invalid range flag";
                 break;

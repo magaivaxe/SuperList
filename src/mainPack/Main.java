@@ -60,7 +60,7 @@ public class Main {
 
     private static void testPrint(LinkedList<Integer> lc) {
         Node<Integer> temp = lc.getHead();
-        while (temp.getNext() != null) {            
+        while (temp != null) {            
             System.out.println(temp.getData());
             temp = temp.getNext();
         }

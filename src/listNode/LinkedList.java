@@ -1,9 +1,8 @@
-
 package listNode;
 
 
 /**
- *
+ * Class to manipulate the LinkedList{@code <T>}
  * @author Marcos Gomes
  * @param <T>
  */
@@ -61,19 +60,27 @@ public class LinkedList<T> implements LCImplements<T>{
     
     @Override
     public Object[] toArray(){
-        
-        return null;
+        Object[] toReturn = new Object[size];
+        Node<T> temp = head;
+        int i = 0;
+        while (temp.next != null) {            
+            toReturn[i] = temp.data;
+            temp = temp.next;
+            i++;
+        }
+        return toReturn;
     }
     
     @Override
     public LinkedList<T> listTail() {
         // initial node on head.next
         Node<T> temp = this.head.next;
+        // Tail passed to contructor
         LinkedList<T> lc = new LinkedList<>(temp.data);
         lc.size = this.size - 1;
-        // to read linkedList
+        // to read linkedList to set the end Node
         while (temp != null) {            
-            // Condition to set end
+            // Condition to set end Node
             if (temp.next == null) {
                 lc.end = temp;
             }
@@ -132,6 +139,14 @@ public class LinkedList<T> implements LCImplements<T>{
 
     public Node<T> getHead() {
         return head;
+    }
+    
+    public void setSizePlusOne() {
+        this.size++;
+    }
+    
+    public void setSizeMinusOne() {
+        this.size--;
     }
 
 }

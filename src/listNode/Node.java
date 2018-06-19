@@ -19,7 +19,8 @@ public class Node<T>{
         this.data = data;
         this.next = next;
     }
-
+    
+    // Getters for differents packs
     public Node<T> getNext() {
         return next;
     }
