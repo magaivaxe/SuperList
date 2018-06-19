@@ -7,12 +7,15 @@ import java.util.Spliterator;
 import java.util.function.Consumer;
 
 /**
- *
+ * 
  * @author Marcos Gomes
+ * @param <T> General type to access the private aggregated data and <br>
+ * at same moment hiding the underlying representation.
  */
 public class LinkedListIterator<T> implements Iterable<T>{
     // Fields
     private Node<T> nextNode;
+    @SuppressWarnings("FieldMayBeFinal")
     private Node<T> currentNode;
     private LinkedList<T> linkedChaine;
     // Constructors
@@ -23,9 +26,18 @@ public class LinkedListIterator<T> implements Iterable<T>{
         this.nextNode = linkedChaine.getHead().next;
     }
     
+    /**
+     * Check if the next data from Node{@code <T>} exists.
+     * @return boolean.
+     */
     public boolean hasNext(){
         return (this.currentNode.next != null);
     }
+    
+    /**
+     * Return the next value T from the linked Node{@code <T>}.
+     * @return data from Node{@code <T>}.
+     */
     public T next(){
         T res = nextNode.data;
         nextNode = nextNode.next;
@@ -33,8 +45,8 @@ public class LinkedListIterator<T> implements Iterable<T>{
     }
     
     /**
-     * 
-     * @return true if exists currentNode from the nextNode
+     * Check if exists previous data from the currentNode.
+     * @return boolean.
      */
     public boolean hasPrevious(){
         return (this.next() != null);
